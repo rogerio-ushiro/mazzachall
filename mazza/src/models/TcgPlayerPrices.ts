@@ -1,4 +1,4 @@
-interface TcgPlayerPrices {
+export interface TcgPlayerPrices {
     low: number | null;
     mid: number;
     high: number;

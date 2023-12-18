@@ -1,4 +1,10 @@
-interface PokemonCard {
+import { Weakness } from './Weakness';
+import { Resistance } from './Resistance';
+import { Attack } from './Attack';
+import { TcgPlayer } from './TcgPlayer';
+import { CardMarket } from './CardMarket';
+
+export interface PokemonCard {
     id: string;
     name: string;
     supertype: string;
@@ -11,7 +17,7 @@ interface PokemonCard {
     resistances: Resistance[];
     retreatCost: string[];
     convertedRetreatCost: number;
-    set: SetDetails;
+    // set: SetDetails;
     number: string;
     artist: string;
     rarity: string;

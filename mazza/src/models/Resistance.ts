@@ -1,4 +1,4 @@
-interface Resistance {
+export interface Resistance {
     type: string;
     value: string;
 }

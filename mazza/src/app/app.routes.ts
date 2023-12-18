@@ -5,8 +5,8 @@ import { PageNotFoundComponent } from './error-routing/not-found/not-found.compo
 import { UncaughtErrorComponent } from './error-routing/error/uncaught-error.component';
 
 export const routes: Routes = [
-	{ path: '', redirectTo: '/home', pathMatch: 'full'},
-	{ path: 'home', component: HomeComponent, data: { text: 'Home' }},
+	{ path: '', redirectTo: '/home', pathMatch: 'full' },
+	{ path: 'home', component: HomeComponent, data: { text: 'Home' } },
 	{ path: 'error', component: UncaughtErrorComponent },
 	{ path: '**', component: PageNotFoundComponent } // must always be last
 ];

@@ -1,4 +1,4 @@
-interface SetDetails {
+export interface SetDetails {
     id: string;
     name: string;
     series: string;

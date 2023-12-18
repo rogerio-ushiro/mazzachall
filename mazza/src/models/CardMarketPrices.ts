@@ -1,5 +1,4 @@
-
-interface CardMarketPrices {
+export interface CardMarketPrices {
     averageSellPrice: number;
     lowPrice: number;
     trendPrice: number;

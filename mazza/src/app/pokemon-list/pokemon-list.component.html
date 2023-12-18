@@ -1,0 +1,21 @@
+<p>pokemon-list works!</p>
+
+<div>
+    <h2>Comments</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>index</th>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let card of cards?.data; let i=index">
+                <td>{{ i }}</td>
+                <td>{{ card.id }}</td>
+                <td>{{ card.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

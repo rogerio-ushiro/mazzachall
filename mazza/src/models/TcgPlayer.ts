@@ -1,4 +1,6 @@
-interface TcgPlayer {
+import { TcgPlayerPrices } from "./TcgPlayerPrices";
+
+export interface TcgPlayer {
     url: string;
     updatedAt: string;
     prices: {

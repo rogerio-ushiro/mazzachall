@@ -1,4 +1,4 @@
-interface Attack {
+export interface Attack {
     name: string;
     cost: string[];
     convertedEnergyCost: number;
