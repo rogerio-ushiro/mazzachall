@@ -12,17 +12,16 @@ import { PokemonApiResponse } from '../../models/PokemonApiResponse';
   styleUrl: './pokemon-list.component.scss'
 })
 
-
 export class PokemonListComponent implements OnInit {
   cards: PokemonCard[] = [];
+  isLoaded: boolean = false;
 
   constructor(private pokemonResourceService: PokemonResourceService) { }
 
   ngOnInit(): void {
     this.pokemonResourceService.getCards().subscribe((response: PokemonApiResponse) => {
-      // Handle the response data here
       this.cards = response.data;
-      // Your code to process the data
+      this.isLoaded = true;
     });
   }
 

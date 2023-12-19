@@ -6,6 +6,7 @@ import { PokemonApiResponse } from '../models/PokemonApiResponse';
 @Injectable({
   providedIn: 'root',
 })
+
 export class PokemonResourceService {
   private baseUrl = 'https://api.pokemontcg.io/v2';
 
