@@ -1,0 +1,11 @@
+<p>deck-form works!</p>
+
+<form [formGroup]="newDeckForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name">
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
