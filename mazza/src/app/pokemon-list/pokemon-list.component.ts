@@ -20,7 +20,9 @@ export class PokemonListComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonResourceService.getCards().subscribe((response: PokemonApiResponse) => {
-      this.cards = response.data
+      // Handle the response data here
+      this.cards = response.data;
+      // Your code to process the data
     });
   }
 

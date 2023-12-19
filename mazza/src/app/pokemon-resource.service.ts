@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PokemonCard } from '../models/PokemonCard'; // Import PokemonCard interface
+import { PokemonApiResponse } from '../models/PokemonApiResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class PokemonResourceService {
 
   constructor(private http: HttpClient) { }
 
-  getCards(): Observable<PokemonCard[]> {
-    return this.http.get<PokemonCard[]>(`${this.baseUrl}/cards`);
+  getCards(): Observable<PokemonApiResponse> {
+    return this.http.get<PokemonApiResponse>(`${this.baseUrl}/cards`);
   }
 }
