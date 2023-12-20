@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { PokemonListComponent } from '../pokemon-list/pokemon-list.component';
+import { PokemonGridComponent } from '../pokemon-grid/pokemon-grid.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [PokemonListComponent],
+  imports: [PokemonListComponent, PokemonGridComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent {
-  title = 'Welcome to Ignite UI for Angular!';
+  title = 'Meus baralhos';
   constructor() { }
 }
