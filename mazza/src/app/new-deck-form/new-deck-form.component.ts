@@ -23,15 +23,7 @@ export class NewDeckFormComponent {
     this.newDeckForm = this.fb.group({
       name: ['', Validators.required]
     });
-
-    this.deckService.createDeck("Cards d'água");
-    this.deckService.createDeck("Cards de fogo");
-    this.deckService.createDeck("Cards de 1");
-    this.deckService.createDeck("Cards de 2");
-    this.deckService.createDeck("Cards de 3");
-    this.deckService.createDeck("Cards de 4");
-    this.deckService.createDeck("Cards de 5");
-    this.myDecks = this.deckService.getAllDecks();
+    this.myDecks=this.deckService.getAllDecks();
   }
 
   onSubmit() {

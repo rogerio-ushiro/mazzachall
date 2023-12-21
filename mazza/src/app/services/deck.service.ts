@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { PokemonCard } from '../../models/PokemonCard';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -13,13 +11,7 @@ export class DeckService {
   constructor() {
     this.createDeck("Cards d'água");
     this.createDeck("Cards de fogo");
-    this.createDeck("Cards de 1");
-    this.createDeck("Cards de 2");
-    this.createDeck("Cards de 3");
-    this.createDeck("Cards de 4");
-    this.createDeck("Cards de 5");
-
-    console.log("loaded");
+    this.createDeck("Cards de terra");
   }
 
   public createDeck(deckName: string): Observable<Deck> {
@@ -41,10 +33,8 @@ export class DeckService {
     }
   }
 
-  public deleteDeck(id: number): Deck[] {
-    let decks: Deck[] = this.getAllDecks();
-    decks = decks.splice(id, 1);
-    this.cache.next(decks);
+  public deleteDeck(id: string): Deck[] {
+    this.cache.next(this.getAllDecks().filter(e => e.id !== id));
     return this.getAllDecks();
   }
 
@@ -54,12 +44,7 @@ export class DeckService {
 
   public findDeckById(id: string): Deck {
     let decks: Deck[] = this.getAllDecks();
-    console.log(decks);
-    let toDeleteDeck = decks.find(e => e.id === id);
-    console.log(toDeleteDeck);
-    
-    let deck: Deck = decks.find(e => e.id == id) as Deck;
-    return deck;
+    return decks.find(e => e.id == id) as Deck;;
   }
 
   public findDeckByName(name: string) {
