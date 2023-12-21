@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ColumnType, IgxButtonModule, IgxChipsModule, IgxGridComponent, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxPaginatorComponent, IgxRippleModule } from 'igniteui-angular';
+import { IgxButtonModule, IgxChipsModule, IgxGridComponent, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxPaginatorComponent, IgxRippleModule } from 'igniteui-angular';
 import { allPokemonCards } from './localData';
 import { PokemonResourceService } from '../services/pokemon-resource.service';
-import { PokemonCard } from '../../models/PokemonCard';
-import { map } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 
@@ -12,7 +10,7 @@ import { CommonModule, NgIf } from '@angular/common';
   templateUrl: './pokemon-grid.component.html',
   styleUrls: ['./pokemon-grid.component.scss'],
   standalone: true,
-  imports: [ NgIf, CommonModule, FormsModule, IgxGridComponent, IgxPaginatorComponent, IgxButtonModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule, IgxChipsModule]
+  imports: [NgIf, CommonModule, FormsModule, IgxGridComponent, IgxPaginatorComponent, IgxButtonModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule, IgxChipsModule]
 
 })
 export class PokemonGridComponent implements OnInit {
