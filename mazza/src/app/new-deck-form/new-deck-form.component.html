@@ -1,9 +1,40 @@
 <div class="mb-4 mt-12 text-4xl font-extrabold	">
-    Criar novo baralho
+    <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ...">
+
+        Criar novo baralho
+    </span>
 </div>
 
-<h1
-    class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-</h1>
 
-<app-deck-form />
+<form [formGroup]="newDeckForm" (ngSubmit)="onSubmit()">
+
+    <div class="grid md:grid-cols-1">
+        <div> <label for="name" class="block mb-2 text-sm font-medium text-gray-900 mt-4">Nome do baralho</label></div>
+    </div>
+    <div class="grid gap-6 mb-6 md:grid-cols-2 w-96">
+        <div>
+            <input type="text" id="name" formControlName="name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                required>
+        </div>
+        <div>
+            <button type="submit"
+                class="text-white bg-indigo-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  ">
+                Salvar
+            </button>
+        </div>
+    </div>
+
+    <div class="mb-4 mt-12 text-3xl font-extrabold	">
+        <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ">
+            Seus baralhos
+        </span>
+    </div>
+    <div class="flex flex-wrap gap-6 drop-shadow-2xl pt-6 ">
+        <div *ngFor="let deck of myDecks" class="">
+            <div><img src="https://images.pokemontcg.io/hgss4/" class="h-64 " /></div>
+            <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16 ...">{{deck.name}}</div>
+        </div>
+    </div>
+
+</form>
