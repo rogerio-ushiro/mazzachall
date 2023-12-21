@@ -1,10 +1,8 @@
 <div class="mb-4 mt-12 text-4xl font-extrabold	">
     <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ...">
-
         Criar novo baralho
     </span>
 </div>
-
 
 <form [formGroup]="newDeckForm" (ngSubmit)="onSubmit()">
 
@@ -31,9 +29,12 @@
         </span>
     </div>
     <div class="flex flex-wrap gap-6 drop-shadow-2xl pt-6 ">
-        <div *ngFor="let deck of myDecks" class="">
-            <div><img src="https://images.pokemontcg.io/hgss4/" class="h-64 " /></div>
-            <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16 ...">{{deck.name}}</div>
+        <div *ngFor="let deck of myDecks; index as i">
+            <div>{{deck.id}}</div>
+            <a routerLink="/edit-deck/{{deck.id}}">
+                <div><img src="https://images.pokemontcg.io/hgss4/" class="h-64 " /></div>
+                <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16 ...">{{deck.name}}</div>
+            </a>
         </div>
     </div>
 

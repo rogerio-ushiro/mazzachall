@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DeckService } from '../services/deck.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-new-deck-form',
   standalone: true,
   imports: [CommonModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule, RouterModule],
   templateUrl: './new-deck-form.component.html',
   styleUrl: './new-deck-form.component.scss'
 })

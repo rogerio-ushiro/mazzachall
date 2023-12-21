@@ -5,12 +5,14 @@ import { PageNotFoundComponent } from './error-routing/not-found/not-found.compo
 import { UncaughtErrorComponent } from './error-routing/error/uncaught-error.component';
 import { NewDeckFormComponent } from './new-deck-form/new-deck-form.component';
 import { PokemonGridComponent } from './pokemon-grid/pokemon-grid.component';
+import { EditDeckFormComponent } from './edit-deck-form/edit-deck-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data: { text: 'Home' } },
-  { path: 'new-deck', component: NewDeckFormComponent, data: { text: 'new deck form' } },
+  { path: 'new-deck', component: NewDeckFormComponent, data: { text: 'Create Deck' } },
+  { path: 'edit-deck/:id', component: EditDeckFormComponent },
   { path: 'error', component: UncaughtErrorComponent },
   { path: 'pokemon-grid', component: PokemonGridComponent, data: { text: 'pokemonGrid' } },
-  { path: '**', component: PageNotFoundComponent } // must always be last
-];
+  { path: '**', component: PageNotFoundComponent }
+]; 
