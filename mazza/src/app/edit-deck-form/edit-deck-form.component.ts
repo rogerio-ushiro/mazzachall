@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { DeckService } from '../services/deck.service';
 import { PokemonGridComponent } from '../pokemon-grid/pokemon-grid.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,7 +23,7 @@ export class EditDeckFormComponent {
   showDeleteConfirmationDialog = false;
   routeSub: Subscription | undefined;
 
-  constructor(private fb: FormBuilder, private deckService: DeckService, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private deckService: DeckService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.newDeckForm = this.fb.group({
@@ -31,8 +31,12 @@ export class EditDeckFormComponent {
     });
 
     this.route.params.subscribe(params => {
-      this.currentDeck = this.deckService.findDeckById(params['id']);
-      this.newDeckForm.controls['name'].setValue(this.currentDeck.name);
+      try {
+        this.currentDeck = this.deckService.findDeckById(params['id']);
+        this.newDeckForm.controls['name'].setValue(this.currentDeck.name);
+      } catch (error) {
+        this.router.navigate(["new-deck"])
+      }
     });
 
   }
@@ -45,7 +49,8 @@ export class EditDeckFormComponent {
 
     this.myDecks = this.deckService.deleteDeck(this.currentDeck.id);
     this.toggleDeleteDeckDialog();
-    location.href = 'home';
+    this.router.navigate(['new-deck'])
+
   }
 
   onSubmit() {
