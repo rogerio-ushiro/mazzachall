@@ -11,7 +11,7 @@ import {
 } from 'igniteui-angular';
 import { filter } from 'rxjs/operators';
 import { NgFor } from '@angular/common';
-import { routes } from './app.routes';
+import { routes } from '../app.routes';
 
 @Component({
   selector: 'app-root',

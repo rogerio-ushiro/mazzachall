@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewDeckFormComponent } from './new-deck-form.component';
+import { NewDeckFormComponent } from './all-decks.component';
 
 describe('NewDeckFormComponent', () => {
   let component: NewDeckFormComponent;

@@ -2,21 +2,21 @@ import { CommonModule } from '@angular/common';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IgxButtonGroupModule, IgxFilterModule, IgxFilterOptions, IgxIconModule, IgxInputGroupModule, IgxListModule, IgxRippleModule } from 'igniteui-angular';
-import { PokemonResourceService } from '../services/pokemon-resource.service';
-import { DeckService } from '../services/deck.service';
-import { Deck } from '../../models/Deck';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
+import { Deck } from '../../../models/Deck';
+import { PokemonResourceService } from '../../data/pokemon-resource.service';
+import { DeckService } from '../../data/deck.service';
 
 @Component({
-    selector: 'app-contact-list2',
+    selector: 'app-card-list',
     standalone: true,
     imports: [IgxButtonGroupModule, IgxInputGroupModule, IgxIconModule, IgxListModule,
-        IgxRippleModule, CommonModule, IgxFilterModule, FormsModule,LoadingIndicatorComponent],
-    styleUrls: ['./list-sample-4.component.scss'],
-    templateUrl: './list-sample-4.component.html'
+        IgxRippleModule, CommonModule, IgxFilterModule, FormsModule, LoadingIndicatorComponent],
+    styleUrls: ['./card-list.component.scss'],
+    templateUrl: './card-list.component.html'
 })
 
-export class ListSample4Component implements OnInit {
+export class CardListComponent implements OnInit {
     private currentDeck!: Deck;
     public searchCard: string | undefined;
     public cards = [];

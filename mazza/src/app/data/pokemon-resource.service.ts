@@ -10,25 +10,27 @@ import { PokemonCard } from '../../models/PokemonCard';
 })
 export class PokemonResourceService {
   private baseUrl = 'https://api.pokemontcg.io/v2';
-
   private cache: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) { }
 
   public content(): Observable<any> {
+
     if (this.cache.getValue() !== null) {
-      // load pokemon cards from cache
       return new Observable<any>((observer) => {
         observer.next(this.cache.getValue());
       })
     };
-    // load pokemon cards from api source
+
+    console.log("loading card list from api resource...");
     return this.http.get<PokemonApiResponse>(`${this.baseUrl}/cards`).pipe(
       map((res) => {
+        console.log("card list was loaded successfully ");
         this.cache.next(res.data);
         return this.cache.getValue();
       })
     );
+
   }
 
   public getCard(id: string): Observable<PokemonCard | null> {

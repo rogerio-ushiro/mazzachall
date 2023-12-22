@@ -1,22 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IgxButtonModule, IgxChipsModule, IgxGridComponent, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxPaginatorComponent, IgxRippleModule } from 'igniteui-angular';
-import { allPokemonCards } from './localData';
-import { PokemonResourceService } from '../services/pokemon-resource.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
+import { PokemonResourceService } from '../../data/pokemon-resource.service';
 
 @Component({
-  selector: 'app-pokemon-grid',
-  templateUrl: './pokemon-grid.component.html',
-  styleUrls: ['./pokemon-grid.component.scss'],
+  selector: 'app-data-grid',
+  templateUrl: './data-grid.component.html',
+  styleUrls: ['./data-grid.component.scss'],
   standalone: true,
-  imports: [NgIf, CommonModule, FormsModule, IgxGridComponent, IgxPaginatorComponent, IgxButtonModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule, IgxChipsModule]
+  imports: [LoadingIndicatorComponent, CommonModule, FormsModule, IgxGridComponent, IgxPaginatorComponent, IgxButtonModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule, IgxChipsModule]
 
 })
-export class PokemonGridComponent implements OnInit {
-  // public localData: PokemonCard[] = [];
+export class DataGridComponent implements OnInit {
   public data: any[] = [];
   title = 'pokemonGrid';
+  showGrid = false;
 
   @ViewChild('grid1', { static: true })
   public grid!: IgxGridComponent;
@@ -27,7 +27,10 @@ export class PokemonGridComponent implements OnInit {
   constructor(private pokemonResourceService: PokemonResourceService) { }
 
   ngOnInit(): void {
-    this.data = allPokemonCards.map((item, index) => ({ index: index, id: item.id, name: item.name, types: (item.types.join(", ")), supertype: item.supertype }));
+    this.pokemonResourceService.content().subscribe(collection => {
+      this.showGrid = true;
+      this.data = collection.map((card: any, index: number) => ({ index: index, id: card.id, name: card.name, types: (card.types.join(", ")), supertype: card.supertype }));
+    })
   }
 
   public clearSearch() {

@@ -116,18 +116,18 @@
 
 </form>
 
-<div *ngIf="currentDeck.cards.length < 24"
+<div *ngIf="currentDeck?.cards.length < 24"
     class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-6 rounded relative" role="alert">
     <strong class="font-bold">Eita! Acrescente cartas.</strong><br />
-    <span class="block sm:inline">Falta(m) <strong class="font-bold">{{24 - currentDeck.cards.length}} carta(s)</strong>
+    <span class="block sm:inline">Falta(m) <strong class="font-bold">{{24 - currentDeck?.cards.length}} carta(s)</strong>
         para atingir o mínimo de cartas por
         baralho.</span>
 </div>
 
-<div *ngIf="currentDeck.cards.length > 60"
+<div *ngIf="currentDeck?.cards.length > 60"
     class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-6 rounded relative" role="alert">
     <strong class="font-bold">Eita! Excedeu o limite de cartas por baralho.</strong><br />
-    <span class="block sm:inline">Há <strong class="font-bold">{{currentDeck.cards.length - 60}} carta(s)</strong> além
+    <span class="block sm:inline">Há <strong class="font-bold">{{currentDeck?.cards.length - 60}} carta(s)</strong> além
         do limite por baralho.</span>
 </div>
 
@@ -137,4 +137,4 @@
     </span>
 </div>
 
-<app-contact-list2 />
+<app-card-list />

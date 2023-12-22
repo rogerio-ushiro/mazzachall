@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxGridModule } from 'igniteui-angular';
-import { PokemonGridComponent } from './pokemon-grid.component';
+import { DataGridComponent } from './data-grid.component';
 
 describe('PokemonGridComponent', () => {
-  let component: PokemonGridComponent;
-  let fixture: ComponentFixture<PokemonGridComponent>;
+  let component: DataGridComponent;
+  let fixture: ComponentFixture<DataGridComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-	  imports: [NoopAnimationsModule, IgxGridModule, PokemonGridComponent]
+	  imports: [NoopAnimationsModule, IgxGridModule, DataGridComponent]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PokemonGridComponent);
+    fixture = TestBed.createComponent(DataGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

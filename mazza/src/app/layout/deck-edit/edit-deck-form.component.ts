@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DeckService } from '../services/deck.service';
-import { PokemonGridComponent } from '../pokemon-grid/pokemon-grid.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ListSample4Component } from '../list-sample-4/list-sample-4.component';
+import { CardListComponent } from '../card-list/card-list.component';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { DeckService } from '../../data/deck.service';
+import { DataGridComponent } from '../data-grid/data-grid.component';
 
 @Component({
   selector: 'app-edit-deck-form',
   standalone: true,
-  imports: [CommonModule,
-    ReactiveFormsModule, PokemonGridComponent, ListSample4Component, BreadcrumbComponent],
+  imports: [CommonModule, ReactiveFormsModule, DataGridComponent, CardListComponent, BreadcrumbComponent],
   templateUrl: './edit-deck-form.component.html',
   styleUrl: './edit-deck-form.component.scss'
 })
@@ -37,7 +36,7 @@ export class EditDeckFormComponent {
         this.currentDeck = this.deckService.setCurrentDeck(params['id']);
         this.newDeckForm.controls['name'].setValue(this.currentDeck.name);
       } catch (error) {
-        this.router.navigate(["new-deck"])
+        this.router.navigate(["**"])
       }
     });
 
@@ -50,7 +49,7 @@ export class EditDeckFormComponent {
   deleteDeck() {
     this.myDecks = this.deckService.deleteDeck(this.currentDeck.id);
     this.toggleDeleteDeckDialog();
-    this.router.navigate(['new-deck'])
+    this.router.navigate(['all-decks'])
   }
 
   onSubmit() {

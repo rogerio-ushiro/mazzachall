@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DeckService } from '../services/deck.service';
 import { RouterModule } from '@angular/router';
+import { DeckService } from '../../data/deck.service';
 
 @Component({
   selector: 'app-new-deck-form',
   standalone: true,
   imports: [CommonModule,
     ReactiveFormsModule, RouterModule],
-  templateUrl: './new-deck-form.component.html',
-  styleUrl: './new-deck-form.component.scss'
+  templateUrl: './all-decks.component.html',
+  styleUrl: './all-decks.component.scss'
 })
 
-export class NewDeckFormComponent {
+export class AllDecksComponent {
   newDeckForm!: FormGroup;
   myDecks: any[] = [];
 
@@ -31,7 +31,6 @@ export class NewDeckFormComponent {
       this.deckService.createDeck(this.newDeckForm.value.name);
       this.myDecks = this.deckService.getAllDecks();
       this.newDeckForm.reset();
-      // console.log(this.deckService.getAllDecks());
     }
   }
 }
