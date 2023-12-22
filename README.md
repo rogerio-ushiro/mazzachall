@@ -20,7 +20,6 @@ Siga estas etapas para configurar o projeto em seu ambiente de desenvolvimento:
 1. Clone o repositório do GitHub:
 
 ```bash
-bashCopy code
 git clone https://github.com/rogerio-ushiro/mazzachall.git
 
 ```
@@ -28,7 +27,6 @@ git clone https://github.com/rogerio-ushiro/mazzachall.git
 1. Navegue até o diretório do projeto:
 
 ```bash
-bashCopy code
 cd mazzachall
 
 ```
@@ -36,7 +34,6 @@ cd mazzachall
 1. Instale as dependências do projeto:
 
 ```bash
-bashCopy code
 npm install
 
 ```
@@ -46,7 +43,6 @@ npm install
 Após a configuração, você pode executar a aplicação localmente com o seguinte comando:
 
 ```bash
-bashCopy code
 ng serve
 
 ```
