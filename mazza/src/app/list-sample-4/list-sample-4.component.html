@@ -1,0 +1,20 @@
+<igx-input-group type="search" class="search">
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <input #search igxInput placeholder="Procurar carta" [(ngModel)]="searchCard">
+    <igx-suffix *ngIf="search.value.length > 0">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+
+<div class="list-sample">
+    <igx-list>
+        <igx-list-item [isHeader]="true">Cartas</igx-list-item>
+        <igx-list-item igxRipple igxRippleTarget=".igx-list__item-content" #item
+            *ngFor="let card of cards | igxFilter: filterContacts;">
+            <span igxListLineTitle>{{ card.name }}</span>
+            <span igxListLineSubTitle>{{ card.types }}</span>
+        </igx-list-item>
+    </igx-list>
+</div>
