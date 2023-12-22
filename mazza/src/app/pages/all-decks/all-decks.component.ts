@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { DeckService } from '../../data/deck.service';
+import { DeckService } from '../../../data/deck.service';
 
 @Component({
   selector: 'app-new-deck-form',

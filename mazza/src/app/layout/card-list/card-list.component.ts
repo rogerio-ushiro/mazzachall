@@ -3,9 +3,10 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IgxButtonGroupModule, IgxFilterModule, IgxFilterOptions, IgxIconModule, IgxInputGroupModule, IgxListModule, IgxRippleModule } from 'igniteui-angular';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
-import { Deck } from '../../../models/Deck';
-import { PokemonResourceService } from '../../data/pokemon-resource.service';
-import { DeckService } from '../../data/deck.service';
+import { Deck } from '../../../data/types/Deck';
+import { PokemonResourceService } from '../../../data/pokemon-resource.service';
+import { DeckService } from '../../../data/deck.service';
+import { Card } from '../../../data/types/Card';
 
 @Component({
     selector: 'app-card-list',
@@ -19,7 +20,7 @@ import { DeckService } from '../../data/deck.service';
 export class CardListComponent implements OnInit {
     private currentDeck!: Deck;
     public searchCard: string | undefined;
-    public cards = [];
+    public cards: Card[] = [];
 
     public size = 'medium';
 

@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { PokemonResourceService } from './pokemon-resource.service';
-import { Deck } from '../../models/Deck';
-import initialMockDeck from '../../assets/initialMockDeck.json';
+import initialMockDeck from '../../src/assets/initialMockDeck.json';
+import { Deck } from './types/Deck';
+import { Card } from './types/Card';
 
 @Injectable({
   providedIn: 'root',
@@ -56,8 +57,6 @@ export class DeckService {
     const deckIndex = decks.findIndex(e => e.id == this.currentDeck.id);
     this.pokemonResourceService.content().subscribe(collection => {
       const newCard = collection.find((e: any) => e.id == cardId);
-      console.log(newCard);
-
       this.currentDeck.cards.push(newCard)
     });
     decks[deckIndex] = this.currentDeck;

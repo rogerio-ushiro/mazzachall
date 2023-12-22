@@ -3,7 +3,7 @@ import { IgxButtonModule, IgxChipsModule, IgxGridComponent, IgxGridModule, IgxIc
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
-import { PokemonResourceService } from '../../data/pokemon-resource.service';
+import { PokemonResourceService } from '../../../data/pokemon-resource.service';
 
 @Component({
   selector: 'app-data-grid',

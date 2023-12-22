@@ -1,0 +1,48 @@
+<app-breadcrumb />
+
+<div class="flex justify-end ...">
+    <a routerLink='/deck-edit/{{currentDeck.id}}'>
+        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+            class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            type="button">
+            Editar baralho
+        </button>
+    </a>
+</div>
+
+<div class="mb-4 text-4xl font-extrabold	">
+    <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ">
+        {{currentDeck.name}} ({{currentDeck?.cards?.length}})
+    </span>
+</div>
+
+<div>SuperTypes: {{12}} | Types: {{12}}</div>
+
+<div class="flex flex-wrap gap-6 drop-shadow-2xl pt-6 ">
+
+    <div *ngIf="currentDeck!=undefined && currentDeck?.cards.length > 0;then content else nocontent">here is ignored
+    </div>
+
+    <ng-template #content>
+        <div *ngFor="let card of currentDeck.cards" class="">
+            <div (click)="visualize(card.images.large)"><img src="{{card.images.large}}" class="h-64 cursor-pointer " />
+            </div>
+            <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16 ...">{{card.name}}</div>
+        </div>
+    </ng-template>
+
+    <ng-template #nocontent>
+        Sem cartas ainda.
+    </ng-template>
+
+</div>
+
+<div *ngIf="selectedCard != undefined" class="relative z-10" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true" (click)="closeCard()">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <img src="{{selectedCard}}" class="h-screen p-12 cursor-pointer" />
+        </div>
+    </div>
+</div>
