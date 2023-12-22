@@ -104,9 +104,10 @@
         <div *ngIf="currentDeck?.cards.length > 0;then content else nocontent">here is ignored</div>
 
         <ng-template #content>
-            <div *ngFor="let card of currentDeck.cards" class="">
-                <div><img src="{{card.images.large}}" class="h-56 " /></div>
-                <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16 ...">{{card.name}}</div>
+            <div *ngFor="let card of currentDeck.cards">
+                <div class="hover:bg-red-600 rounded-lg"><img src="{{card.images.large}}"
+                        class="h-56 border-solid border-8 rounded hover:border-red-500 rounded cursor-pointer hover:opacity-80" /></div>
+                <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16">{{card.name}}</div>
             </div>
         </ng-template>
         <ng-template #nocontent>
@@ -119,7 +120,8 @@
 <div *ngIf="currentDeck?.cards.length < 24"
     class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-6 rounded relative" role="alert">
     <strong class="font-bold">Eita! Acrescente cartas.</strong><br />
-    <span class="block sm:inline">Falta(m) <strong class="font-bold">{{24 - currentDeck?.cards.length}} carta(s)</strong>
+    <span class="block sm:inline">Falta(m) <strong class="font-bold">{{24 - currentDeck?.cards.length}}
+            carta(s)</strong>
         para atingir o mínimo de cartas por
         baralho.</span>
 </div>
