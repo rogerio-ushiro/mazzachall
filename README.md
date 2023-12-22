@@ -4,6 +4,8 @@ Este é um projeto Angular que permite aos jogadores criar e gerenciar seus bara
 
 Componentes e estilos visuais utilizando  [Tailwind](https://tailwindcss.com/) e [Infragistics](https://www.infragistics.com/products/ignite-ui-angular/angular/components/general/getting-started).
 
+Testes automatizados dos services utilizando [Jasmine](https://jasmine.github.io/).
+
 ## **Requisitos**
 
 Certifique-se de que você tenha as seguintes ferramentas instaladas em seu sistema:
