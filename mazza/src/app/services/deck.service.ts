@@ -3,19 +3,16 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { PokemonResourceService } from './pokemon-resource.service';
 import { Deck } from '../../models/Deck';
+import initialMockDeck from '../../assets/initialMockDeck.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeckService {
-  private cache: BehaviorSubject<any> = new BehaviorSubject([]);
+  private cache: BehaviorSubject<any> = new BehaviorSubject(initialMockDeck);
   private currentDeck!: Deck;
 
-  constructor(private pokemonResourceService: PokemonResourceService) {
-    this.createDeck("Cards d'água");
-    this.createDeck("Cards de fogo");
-    this.createDeck("Cards de terra");
-  }
+  constructor(private pokemonResourceService: PokemonResourceService) { }
 
   public createDeck(deckName: string): Observable<Deck> {
     let decks: Deck[] = this.getAllDecks();
@@ -58,7 +55,10 @@ export class DeckService {
     let decks: Deck[] = this.getAllDecks();
     const deckIndex = decks.findIndex(e => e.id == this.currentDeck.id);
     this.pokemonResourceService.content().subscribe(collection => {
-      this.currentDeck.cards.push(collection.find((e: any) => e.id == cardId))
+      const newCard = collection.find((e: any) => e.id == cardId);
+      console.log(newCard);
+
+      this.currentDeck.cards.push(newCard)
     });
     decks[deckIndex] = this.currentDeck;
     this.cache.next(decks);
