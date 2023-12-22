@@ -42,6 +42,11 @@ export class DeckEditComponent {
 
   }
 
+  removeCard(cardId: string) {
+    console.log("remove card", cardId);
+    this.currentDeck = this.deckService.removeCardFromDeck(cardId);
+  }
+
   toggleDeleteDeckDialog() {
     this.showDeleteConfirmationDialog = !this.showDeleteConfirmationDialog;
   }

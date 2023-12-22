@@ -105,8 +105,9 @@
 
         <ng-template #content>
             <div *ngFor="let card of currentDeck.cards">
-                <div class="hover:bg-red-600 rounded-lg"><img src="{{card.images.large}}"
-                        class="h-56 border-solid border-8 rounded hover:border-red-500 rounded cursor-pointer hover:opacity-40" /></div>
+                <div class="hover:bg-red-600 rounded-lg" (click)="removeCard(card.id)"><img src="{{card.images.large}}"
+                        class="h-56 border-solid border-8 rounded hover:border-red-500 rounded cursor-pointer hover:opacity-40" />
+                </div>
                 <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16">{{card.name}}</div>
             </div>
         </ng-template>

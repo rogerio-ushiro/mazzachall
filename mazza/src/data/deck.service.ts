@@ -64,6 +64,15 @@ export class DeckService {
     return this.currentDeck;
   }
 
+  public removeCardFromDeck(cardId: string): Deck {
+    let decks: Deck[] = this.getAllDecks();
+    const deckIndex = decks.findIndex(e => e.id == this.currentDeck.id);
+    this.currentDeck.cards = this.currentDeck.cards.filter((e: any) => e.id != cardId);
+    decks[deckIndex] = this.currentDeck;
+    this.cache.next(decks);
+    return this.currentDeck;
+  }
+
   public findDeckById(id: string): Deck {
     let decks: Deck[] = this.getAllDecks();
     return decks.find(e => e.id == id) as Deck;;
