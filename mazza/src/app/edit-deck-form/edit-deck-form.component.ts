@@ -33,7 +33,7 @@ export class EditDeckFormComponent {
 
     this.route.params.subscribe(params => {
       try {
-        this.currentDeck = this.deckService.findDeckById(params['id']);
+        this.currentDeck = this.deckService.setCurrentDeck(params['id']);
         this.newDeckForm.controls['name'].setValue(this.currentDeck.name);
       } catch (error) {
         this.router.navigate(["new-deck"])
@@ -52,16 +52,11 @@ export class EditDeckFormComponent {
     this.router.navigate(['new-deck'])
   }
 
-  addCard(deckID: string) {
-    this.deckService.addCardToDeck(deckID, "ex7-1")
-  }
-
   onSubmit() {
     if (this.newDeckForm?.valid) {
       this.deckService.createDeck(this.newDeckForm.value.name);
       this.myDecks = this.deckService.getAllDecks();
       this.newDeckForm.reset();
-      // console.log(this.deckService.getAllDecks());
     }
   }
 }
