@@ -1,3 +1,5 @@
+<app-breadcrumb />
+
 <div class="flex justify-end ...">
     <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" (click)="toggleDeleteDeckDialog()"
         class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -15,7 +17,7 @@
                     class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
-                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                            <div class="    -3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                 <div class="mt-2">
                                     <p class="text-sm text-gray-500">Tem certeza que deseja apagar este baralho?</p>
                                 </div>
@@ -68,7 +70,7 @@
     </div>
 </div>
 
-<div class="mb-4 mt-12 text-4xl font-extrabold	">
+<div class="mb-4 -mt-4 text-4xl font-extrabold	">
     <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ...">
         Editar '{{currentDeck?.name}}'
     </span>
@@ -114,6 +116,21 @@
 
 </form>
 
+<div *ngIf="currentDeck.cards.length < 24"
+    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-6 rounded relative" role="alert">
+    <strong class="font-bold">Eita! Acrescente cartas.</strong><br />
+    <span class="block sm:inline">Falta(m) <strong class="font-bold">{{24 - currentDeck.cards.length}} carta(s)</strong>
+        para atingir o mínimo de cartas por
+        baralho.</span>
+</div>
+
+<div *ngIf="currentDeck.cards.length > 60"
+    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-6 rounded relative" role="alert">
+    <strong class="font-bold">Eita! Excedeu o limite de cartas por baralho.</strong><br />
+    <span class="block sm:inline">Há <strong class="font-bold">{{currentDeck.cards.length - 60}} carta(s)</strong> além
+        do limite por baralho.</span>
+</div>
+
 <div class="mb-4 mt-12 text-4xl font-extrabold	">
     <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ...">
         Buscar novas cartas
@@ -121,4 +138,3 @@
 </div>
 
 <app-contact-list2 />
-<!-- <app-pokemon-grid /> -->

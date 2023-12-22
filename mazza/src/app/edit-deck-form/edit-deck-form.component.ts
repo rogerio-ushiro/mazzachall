@@ -6,12 +6,13 @@ import { PokemonGridComponent } from '../pokemon-grid/pokemon-grid.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ListSample4Component } from '../list-sample-4/list-sample-4.component';
+import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-edit-deck-form',
   standalone: true,
   imports: [CommonModule,
-    ReactiveFormsModule, PokemonGridComponent, ListSample4Component],
+    ReactiveFormsModule, PokemonGridComponent, ListSample4Component, BreadcrumbComponent],
   templateUrl: './edit-deck-form.component.html',
   styleUrl: './edit-deck-form.component.scss'
 })
