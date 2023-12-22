@@ -1,6 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { PokemonResourceService } from './pokemon-resource.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class DeckService {
   private cache: BehaviorSubject<any> = new BehaviorSubject([]);
 
-  constructor() {
+  constructor(private pokemonResourceService: PokemonResourceService) {
     this.createDeck("Cards d'água");
     this.createDeck("Cards de fogo");
     this.createDeck("Cards de terra");
@@ -27,9 +28,9 @@ export class DeckService {
 
       decks.push(newDeck);
       this.cache.next([...decks]);
-      return of(newDeck); // Import 'of' from 'rxjs' to create an Observable
+      return of(newDeck);
     } else {
-      return throwError(new DuplicateDataError(`Deck '${deckName}' already exists.`)); // Import 'throwError' from 'rxjs'
+      return throwError(new DuplicateDataError(`Deck '${deckName}' already exists.`));
     }
   }
 
@@ -40,6 +41,19 @@ export class DeckService {
 
   public getAllDecks(): Deck[] {
     return this.cache.getValue();
+  }
+
+  public addCardToDeck(deckId: string, cardId: string): Deck {
+    let decks: Deck[] = this.getAllDecks();
+    const deckFound = decks.find(e => e.id == deckId) as Deck;
+    const deckIndex = decks.findIndex(e => e.id == deckId);
+
+    this.pokemonResourceService.content().subscribe(collection => {
+      deckFound.cards.push(collection.find((e: any) => e.id == cardId))
+    });
+    decks[deckIndex] = deckFound;
+    this.cache.next(decks);
+    return deckFound;
   }
 
   public findDeckById(id: string): Deck {
@@ -57,7 +71,7 @@ export class DeckService {
 interface Deck {
   id: string
   name: string
-  cards: number[]
+  cards: string[]
 }
 
 class DuplicateDataError extends Error {

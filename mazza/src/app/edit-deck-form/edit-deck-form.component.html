@@ -70,7 +70,7 @@
 
 <div class="mb-4 mt-12 text-4xl font-extrabold	">
     <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ...">
-        Editar baralho {{currentDeck?.name}}
+        Editar '{{currentDeck?.name}}'
     </span>
 </div>
 
@@ -94,21 +94,27 @@
 
     <div class="mb-4 mt-12 text-3xl font-extrabold	">
         <span class="box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ">
-            As cartas ({{currentDeck.cards.length}})
+            As cartas ({{currentDeck?.cards.length}})
         </span>
     </div>
+    <div>SuperTypes: {{12}} | Types: {{12}}</div>
     <div class="flex flex-wrap gap-6 drop-shadow-2xl pt-6 ">
         <div *ngIf="currentDeck?.cards.length > 0;then content else nocontent">here is ignored</div>
+
         <ng-template #content>
-            <div *ngFor="let deck of myDecks" class="">
-                <div><img src="https://images.pokemontcg.io/hgss4/" class="h-32 " /></div>
-                <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16 ...">{{deck.name}}</div>
+            <div *ngFor="let card of currentDeck.cards" class="">
+                <div><img src="{{card.images.large}}" class="h-32 " /></div>
+                <div class="bg-black text-white w-fit px-2 py-0.5 relative -top-16 ...">{{card.name}}</div>
             </div>
         </ng-template>
         <ng-template #nocontent>
             Sem cartas ainda.
         </ng-template>
-
+        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" (click)="addCard(currentDeck?.id)"
+            class="bg-pink-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            type="button">
+            add card
+        </button>
     </div>
 
 </form>

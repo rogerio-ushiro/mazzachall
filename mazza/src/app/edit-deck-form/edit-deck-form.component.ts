@@ -46,11 +46,13 @@ export class EditDeckFormComponent {
   }
 
   deleteDeck() {
-
     this.myDecks = this.deckService.deleteDeck(this.currentDeck.id);
     this.toggleDeleteDeckDialog();
     this.router.navigate(['new-deck'])
+  }
 
+  addCard(deckID: string) {
+    this.deckService.addCardToDeck(deckID, "ex7-1")
   }
 
   onSubmit() {
