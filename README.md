@@ -19,7 +19,7 @@ Siga estas etapas para configurar o projeto em seu ambiente de desenvolvimento:
 
 ```bash
 bashCopy code
-git clone https://github.com/seu-usuario/pokemon-tcg-deck-builder.git
+git clone https://github.com/rogerio-ushiro/mazzachall.git
 
 ```
 
@@ -27,7 +27,7 @@ git clone https://github.com/seu-usuario/pokemon-tcg-deck-builder.git
 
 ```bash
 bashCopy code
-cd pokemon-tcg-deck-builder
+cd mazzachall
 
 ```
 
