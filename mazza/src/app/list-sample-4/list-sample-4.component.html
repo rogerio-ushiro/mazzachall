@@ -12,7 +12,7 @@
     <igx-list>
         <igx-list-item [isHeader]="true">Cartas</igx-list-item>
         <igx-list-item igxRipple igxRippleTarget=".igx-list__item-content" #item
-            *ngFor="let card of cards | igxFilter: filterContacts;">
+            *ngFor="let card of cards | igxFilter: filterCards;" (click)="addCard(card.id)">
             <span igxListLineTitle>{{ card.name }}</span>
             <span igxListLineSubTitle>{{ card.types }}</span>
         </igx-list-item>
