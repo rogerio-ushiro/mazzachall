@@ -8,7 +8,7 @@ import { Card } from './types/Card';
 @Injectable({
   providedIn: 'root',
 })
-export class PokemonResourceService {
+export class ApiDataResourceService {
   private baseUrl = 'https://api.pokemontcg.io/v2';
   private cache: BehaviorSubject<any> = new BehaviorSubject(null);
 

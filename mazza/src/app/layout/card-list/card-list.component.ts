@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IgxButtonGroupModule, IgxFilterModule, IgxFilterOptions, IgxIconModule, IgxInputGroupModule, IgxListModule, IgxRippleModule } from 'igniteui-angular';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 import { Deck } from '../../../data/types/Deck';
-import { PokemonResourceService } from '../../../data/pokemon-resource.service';
+import { ApiDataResourceService } from '../../../data/api-data-resource.service';
 import { DeckService } from '../../../data/deck.service';
 import { Card } from '../../../data/types/Card';
 
@@ -24,7 +24,7 @@ export class CardListComponent implements OnInit {
 
     public size = 'medium';
 
-    constructor(private pokemonResourceService: PokemonResourceService, private deckService: DeckService) {
+    constructor(private pokemonResourceService: ApiDataResourceService, private deckService: DeckService) {
         pokemonResourceService.content().subscribe(collection => { this.cards = collection })
     }
 

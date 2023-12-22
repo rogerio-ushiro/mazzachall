@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { PokemonResourceService } from './pokemon-resource.service';
+import { ApiDataResourceService } from './api-data-resource.service';
 import initialMockDeck from '../../src/assets/initialMockDeck.json';
 import { Deck } from './types/Deck';
 import { Card } from './types/Card';
+import { DuplicateDataError } from './types/DuplicateDataError';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class DeckService {
   private cache: BehaviorSubject<any> = new BehaviorSubject(initialMockDeck);
   private currentDeck!: Deck;
 
-  constructor(private pokemonResourceService: PokemonResourceService) { }
+  constructor(private pokemonResourceService: ApiDataResourceService) { }
 
   public createDeck(deckName: string): Observable<Deck> {
     let decks: Deck[] = this.getAllDecks();
@@ -57,9 +58,9 @@ export class DeckService {
     return decks.find(e => e.id == id) as Deck;;
   }
 
-  public findDeckByName(name: string) {
+  public findDeckByName(name: string): Deck {
     let decks: Deck[] = this.getAllDecks();
-    return decks.find(e => e.name == name);
+    return decks.find(e => e.name == name) as Deck;
   }
 
   public saveDeckName(newName: string) {
@@ -93,11 +94,4 @@ export class DeckService {
   }
 
 
-}
-
-class DuplicateDataError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "DuplicateDataError";
-  }
 }

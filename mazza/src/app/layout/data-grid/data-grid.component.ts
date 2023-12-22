@@ -3,7 +3,7 @@ import { IgxButtonModule, IgxChipsModule, IgxGridComponent, IgxGridModule, IgxIc
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
-import { PokemonResourceService } from '../../../data/pokemon-resource.service';
+import { ApiDataResourceService } from '../../../data/api-data-resource.service';
 
 @Component({
   selector: 'app-data-grid',
@@ -24,7 +24,7 @@ export class DataGridComponent implements OnInit {
   public caseSensitive = false;
   public exactMatch = false;
 
-  constructor(private pokemonResourceService: PokemonResourceService) { }
+  constructor(private pokemonResourceService: ApiDataResourceService) { }
 
   ngOnInit(): void {
     this.pokemonResourceService.content().subscribe(collection => {
