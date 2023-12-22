@@ -43,7 +43,6 @@ export class DeckEditComponent {
   }
 
   removeCard(cardId: string) {
-    console.log("remove card", cardId);
     this.currentDeck = this.deckService.removeCardFromDeck(cardId);
   }
 
@@ -59,9 +58,7 @@ export class DeckEditComponent {
 
   onSubmit() {
     if (this.newDeckForm?.valid) {
-      this.deckService.createDeck(this.newDeckForm.value.name);
-      this.myDecks = this.deckService.getAllDecks();
-      this.newDeckForm.reset();
+      this.currentDeck = this.deckService.saveDeckName(this.newDeckForm.value.name);
     }
   }
 }

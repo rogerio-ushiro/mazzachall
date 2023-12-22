@@ -52,11 +52,30 @@ export class DeckService {
     return this.cache.getValue();
   }
 
+  public findDeckById(id: string): Deck {
+    let decks: Deck[] = this.getAllDecks();
+    return decks.find(e => e.id == id) as Deck;;
+  }
+
+  public findDeckByName(name: string) {
+    let decks: Deck[] = this.getAllDecks();
+    return decks.find(e => e.name == name);
+  }
+
+  public saveDeckName(newName: string) {
+    let decks: Deck[] = this.getAllDecks();
+    const deckIndex = decks.findIndex(e => e.id == this.currentDeck.id);
+    this.currentDeck.name = newName;
+    decks[deckIndex] = this.currentDeck;
+    this.cache.next(decks);
+    return this.currentDeck;
+  }
+
   public addCardToDeck(cardId: string): Deck {
     let decks: Deck[] = this.getAllDecks();
     const deckIndex = decks.findIndex(e => e.id == this.currentDeck.id);
     this.pokemonResourceService.content().subscribe(collection => {
-      const newCard = collection.find((e: any) => e.id == cardId);
+      const newCard = collection.find((e: Card) => e.id == cardId);
       this.currentDeck.cards.push(newCard)
     });
     decks[deckIndex] = this.currentDeck;
@@ -73,15 +92,6 @@ export class DeckService {
     return this.currentDeck;
   }
 
-  public findDeckById(id: string): Deck {
-    let decks: Deck[] = this.getAllDecks();
-    return decks.find(e => e.id == id) as Deck;;
-  }
-
-  public findDeckByName(name: string) {
-    let decks: Deck[] = this.getAllDecks();
-    return decks.find(e => e.name == name);
-  }
 
 }
 
