@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { PokemonResourceService } from './pokemon-resource.service';
+import { Deck } from '../../models/Deck';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeckService {
   private cache: BehaviorSubject<any> = new BehaviorSubject([]);
+  private currentDeck!: Deck;
 
   constructor(private pokemonResourceService: PokemonResourceService) {
     this.createDeck("Cards d'água");
@@ -34,6 +36,15 @@ export class DeckService {
     }
   }
 
+  public setCurrentDeck(deckId: string) {
+    this.currentDeck = this.findDeckById(deckId);
+    return this.currentDeck;
+  }
+
+  public getCurrentDeck() {
+    return this.currentDeck;
+  }
+
   public deleteDeck(id: string): Deck[] {
     this.cache.next(this.getAllDecks().filter(e => e.id !== id));
     return this.getAllDecks();
@@ -43,17 +54,15 @@ export class DeckService {
     return this.cache.getValue();
   }
 
-  public addCardToDeck(deckId: string, cardId: string): Deck {
+  public addCardToDeck(cardId: string): Deck {
     let decks: Deck[] = this.getAllDecks();
-    const deckFound = decks.find(e => e.id == deckId) as Deck;
-    const deckIndex = decks.findIndex(e => e.id == deckId);
-
+    const deckIndex = decks.findIndex(e => e.id == this.currentDeck.id);
     this.pokemonResourceService.content().subscribe(collection => {
-      deckFound.cards.push(collection.find((e: any) => e.id == cardId))
+      this.currentDeck.cards.push(collection.find((e: any) => e.id == cardId))
     });
-    decks[deckIndex] = deckFound;
+    decks[deckIndex] = this.currentDeck;
     this.cache.next(decks);
-    return deckFound;
+    return this.currentDeck;
   }
 
   public findDeckById(id: string): Deck {
@@ -66,12 +75,6 @@ export class DeckService {
     return decks.find(e => e.name == name);
   }
 
-}
-
-interface Deck {
-  id: string
-  name: string
-  cards: string[]
 }
 
 class DuplicateDataError extends Error {
