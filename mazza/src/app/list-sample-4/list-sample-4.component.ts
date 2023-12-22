@@ -5,12 +5,13 @@ import { IgxButtonGroupModule, IgxFilterModule, IgxFilterOptions, IgxIconModule,
 import { PokemonResourceService } from '../services/pokemon-resource.service';
 import { DeckService } from '../services/deck.service';
 import { Deck } from '../../models/Deck';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @Component({
     selector: 'app-contact-list2',
     standalone: true,
     imports: [IgxButtonGroupModule, IgxInputGroupModule, IgxIconModule, IgxListModule,
-        IgxRippleModule, CommonModule, IgxFilterModule, FormsModule],
+        IgxRippleModule, CommonModule, IgxFilterModule, FormsModule,LoadingIndicatorComponent],
     styleUrls: ['./list-sample-4.component.scss'],
     templateUrl: './list-sample-4.component.html'
 })
