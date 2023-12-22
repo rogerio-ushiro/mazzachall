@@ -49,6 +49,18 @@ ng serve
 
 Acesse a aplicação em seu navegador em http://localhost:4200/.
 
+
+
+## **Executando o Teste**
+
+Após a aplicação estar rodando normalmente, execute o comando abaixo em outra aba ou instância do seu terminal:
+
+```bash
+ng test
+
+```
+
+
 ## **Funcionalidades Principais**
 
 ### **Lista de Baralhos**
