@@ -17,16 +17,15 @@ export class PokemonResourceService {
 
   public content(): Observable<any> {
     if (this.cache.getValue() !== null) {
-      console.log("loaded from cache");
+      // load pokemon cards from cache
       return new Observable<any>((observer) => {
         observer.next(this.cache.getValue());
       })
     };
-    console.log("loaded from url");
-
+    // load pokemon cards from api source
     return this.http.get<PokemonApiResponse>(`${this.baseUrl}/cards`).pipe(
       map((res) => {
-        this.cache.next(res);
+        this.cache.next(res.data);
         return this.cache.getValue();
       })
     );
