@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CardListComponent } from '../../layout/card-list/card-list.component';
@@ -7,16 +7,15 @@ import { BreadcrumbComponent } from '../../layout/breadcrumb/breadcrumb.componen
 import { DeckService } from '../../../data/deck.service';
 import { DataGridComponent } from '../../layout/data-grid/data-grid.component';
 import { Card } from '../../../data/types/Card';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-deck-view',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, DataGridComponent, CardListComponent, BreadcrumbComponent, RouterModule],
-  templateUrl: './deck-view.component.html',
-  styleUrl: './deck-view.component.scss'
+  templateUrl: './deck-view.component.html'
 })
 
+// página componente que lista todos os cards de um deck
 export class DeckViewFormComponent {
 
   selectedCard: string | undefined;
@@ -25,22 +24,18 @@ export class DeckViewFormComponent {
   types: string[] = [];
   superTypes: string[] = [];
 
-  constructor(private fb: FormBuilder, private deckService: DeckService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private deckService: DeckService, private route: ActivatedRoute, private router: Router) { }
 
+  // carrega deck para ser listado e se houver erros, 
+  // inclusive erros de deck que não está mais em memoria, manda para a pagina de erro
   ngOnInit(): void {
-
-    this.newDeckForm = this.fb.group({
-      name: ['', Validators.required]
-    });
-
     this.route.params.subscribe(params => {
       try {
         this.currentDeck = this.deckService.setCurrentDeck(params['id']);
-        this.newDeckForm.controls['name'].setValue(this.currentDeck.name);
 
         this.filterTypes().subscribe(({ types, superTypes }) => {
-          this.types = Array.from(types); // Convert the Set to an array for logging
-          this.superTypes = Array.from(superTypes); // Convert the Set to an array for logging
+          this.types = Array.from(types);
+          this.superTypes = Array.from(superTypes);
         });
 
       } catch (error) {
@@ -49,6 +44,8 @@ export class DeckViewFormComponent {
     });
 
   }
+
+  // faz filtragem dos cards em supertype e type do cards
   private filterTypes(): Observable<{ types: Set<string>; superTypes: any }> {
     return new Observable<{ types: Set<string>; superTypes: Set<string> }>((observer) => {
       const typesResult = new Set<string>();
@@ -64,10 +61,12 @@ export class DeckViewFormComponent {
     });
   }
 
+  // define o card que será visualizado em tamanho grande
   public visualize(img: string) {
     this.selectedCard = img;
   }
 
+  // fecha o card que está selecionado
   public closeCard() {
     this.selectedCard = undefined;
   }

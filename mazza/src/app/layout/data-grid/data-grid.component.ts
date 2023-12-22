@@ -8,10 +8,8 @@ import { ApiDataResourceService } from '../../../data/api-data-resource.service'
 @Component({
   selector: 'app-data-grid',
   templateUrl: './data-grid.component.html',
-  styleUrls: ['./data-grid.component.scss'],
   standalone: true,
   imports: [LoadingIndicatorComponent, CommonModule, FormsModule, IgxGridComponent, IgxPaginatorComponent, IgxButtonModule, IgxGridModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule, IgxChipsModule]
-
 })
 export class DataGridComponent implements OnInit {
   public data: any[] = [];

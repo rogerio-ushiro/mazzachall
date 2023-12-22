@@ -5,20 +5,20 @@ import { RouterModule } from '@angular/router';
 import { DeckService } from '../../../data/deck.service';
 
 @Component({
-  selector: 'app-new-deck-form',
   standalone: true,
   imports: [CommonModule,
     ReactiveFormsModule, RouterModule],
-  templateUrl: './all-decks.component.html',
-  styleUrl: './all-decks.component.scss'
+  templateUrl: './all-decks.component.html'
 })
 
+// (Home) pagina componente que lista todos os decks em memória
 export class AllDecksComponent {
   newDeckForm!: FormGroup;
   myDecks: any[] = [];
 
   constructor(private fb: FormBuilder, private deckService: DeckService) { }
 
+  // faz carregamento de todos os decks em memória
   ngOnInit(): void {
     this.newDeckForm = this.fb.group({
       name: ['', Validators.required]
@@ -26,6 +26,7 @@ export class AllDecksComponent {
     this.myDecks = this.deckService.getAllDecks();
   }
 
+  // cria um novo deck a partir do nome enviado no input
   onSubmit() {
     if (this.newDeckForm?.valid) {
       this.deckService.createDeck(this.newDeckForm.value.name);

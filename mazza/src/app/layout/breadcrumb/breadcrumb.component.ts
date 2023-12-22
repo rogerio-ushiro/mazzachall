@@ -20,10 +20,10 @@ export class BreadcrumbComponent {
 
   ngOnInit(): void {
 
+    // verifica se há um terceiro nível no breadcrumb
     this.route.url.subscribe(e => {
       this.isEditPage = e[0].path == "deck-edit"
     })
-
 
     this.route.params.subscribe(params => {
       this.currentDeck = this.deckService.setCurrentDeck(params['id']);
